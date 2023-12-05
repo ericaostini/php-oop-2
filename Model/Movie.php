@@ -15,7 +15,7 @@ class Movie extends Product
     public Genres $genres;
     public Genres $second;
 
-    public static $discount = 20;
+    // public static $discount = 20;
 
     function __construct($_id, $_title, $_overview, $_image, $_vote, $_language, Genres $_genres, Genres $_second, $_quantity, $_price)
     {
