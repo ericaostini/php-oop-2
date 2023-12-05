@@ -14,6 +14,11 @@
 
 <body>
     <header class="m-3">
-        <h1>OOP Movie</h1>
+        <h1>OOP</h1>
+        <ul>
+            <li><a href="index.php">Movies</a></li>
+            <li><a href="books.php">Books</a></li>
+            <li><a href="games.php">Games</a></li>
+        </ul>
     </header>
     <main class="container">

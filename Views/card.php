@@ -24,6 +24,24 @@
                     <?= $second ?>
                 </small>
             </div>
+            <div class="mt-3">
+                <h6>Acquista</h6>
+                <ul>
+                    <li>Quantità:
+                        <?= $quantity ?>
+                    </li>
+                    <li>
+                        Prezzo:
+                        <?= $price ?>$
+                    </li>
+                    <?php if ($discount > 0) { ?>
+                    <li>
+                        Sconto:
+                        <?= $discount ?>%
+                    </li>
+                    <?php } ?>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

@@ -8,6 +8,7 @@ $movieList = Movie::fetchAll();
     <div class="row">
         <?php foreach ($movieList as $movie) {
             $movie->displayCard();
+            // var_dump($movie);
             // var_dump(Movie::$sconto);
         } ?>
     </div>

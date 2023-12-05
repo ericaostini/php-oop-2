@@ -1,7 +1,8 @@
 <?php
 include __DIR__ . "/Genres.php";
 include __DIR__ . "/Flag.php";
-class Movie
+include __DIR__ . "/Product.php";
+class Movie extends Product
 {
     private $id;
     private $title;
@@ -16,8 +17,9 @@ class Movie
 
     public static $sconto = 20;
 
-    function __construct($_id, $_title, $_overview, $_image, $_vote, $_language, Genres $_genres, Genres $_second)
+    function __construct($_id, $_title, $_overview, $_image, $_vote, $_language, Genres $_genres, Genres $_second, $_quantity, $_price)
     {
+        parent::__construct($_price, $_quantity);
         $this->id = $_id;
         $this->title = $_title;
         $this->overview = $_overview;
@@ -54,6 +56,7 @@ class Movie
     }
     public function displayCard()
     {
+        $discount = $this->setDiscount($this->title);
         $title = $this->title;
         $overview = substr($this->overview, 0, 100) . '...';
         $vote = $this->voteStar();
@@ -62,6 +65,8 @@ class Movie
         // $genre = $this->genres;
         $genres = $this->genres->type;
         $second = $this->second->type;
+        $price = $this->price;
+        $quantity = $this->quantity;
         include __DIR__ . "/../Views/card.php";
     }
     public static function fetchAll()
@@ -86,7 +91,9 @@ class Movie
             if ($genres == $secondGenre) {
                 $secondGenre = $genreList[rand(0, count($genreList) - 1)];
             }
-            $movieList[] = new Movie($item["id"], $item["title"], $item["overview"], $item["poster_path"], $item["vote_average"], $item["original_language"], $genres, $secondGenre);
+            $quantity = rand(0, 100);
+            $price = rand(10, 100);
+            $movieList[] = new Movie($item["id"], $item["title"], $item["overview"], $item["poster_path"], $item["vote_average"], $item["original_language"], $genres, $secondGenre, $quantity, $price);
         }
         return $movieList;
     }
