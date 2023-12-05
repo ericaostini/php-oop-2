@@ -11,7 +11,7 @@
             <div>
                 <small>
                     <p>
-                        <?= $vote ?>
+                        <?= $voteStar . $vote ?>
                     </p>
                 </small>
                 <small>
@@ -31,14 +31,27 @@
                         <?= $quantity ?>
                     </li>
                     <li>
+                        <?php if ($discount > 0) { ?>
                         Prezzo:
-                        <?= $price ?>$
+                        <span class="text-decoration-line-through">
+                            <?= $price ?>$
+                        </span>
+                        <span class="badge bg-secondary">
+                            <?= $discount_price ?>$
+                        </span>
+                        <?php } else { ?>
+                        <span>
+                            <?= $price ?>$
+                        </span>
+                        <?php } ?>
                     </li>
                     <?php if ($discount > 0) { ?>
                     <li>
                         Sconto:
                         <?= $discount ?>%
                     </li>
+                    <?php } else { ?>
+                    <li>Nessuno sconto applicato </li>
                     <?php } ?>
                 </ul>
             </div>

@@ -15,7 +15,7 @@ class Movie extends Product
     public Genres $genres;
     public Genres $second;
 
-    public static $sconto = 20;
+    public static $discount = 20;
 
     function __construct($_id, $_title, $_overview, $_image, $_vote, $_language, Genres $_genres, Genres $_second, $_quantity, $_price)
     {
@@ -56,10 +56,12 @@ class Movie extends Product
     }
     public function displayCard()
     {
-        $discount = $this->setDiscount($this->title);
+        $discount = $this->setDiscount($this->vote_average);
+        $discount_price = $this->getDiscount($this->setDiscount($this->vote_average));
         $title = $this->title;
         $overview = substr($this->overview, 0, 100) . '...';
-        $vote = $this->voteStar();
+        $vote = round($this->vote_average, 2);
+        $voteStar = $this->voteStar();
         $language = $this->getFlag();
         $img = $this->poster_path;
         // $genre = $this->genres;
