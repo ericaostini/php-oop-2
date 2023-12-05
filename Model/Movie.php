@@ -10,10 +10,13 @@ class Movie
     private $vote_average;
     private $original_language;
 
+    // public array $genres;
     public Genres $genres;
     public Genres $second;
 
-    function __construct($_id, $_title, $_overview, $_image, $_vote, $_language, Genres $genres, Genres $second)
+    public static $sconto = 20;
+
+    function __construct($_id, $_title, $_overview, $_image, $_vote, $_language, Genres $_genres, Genres $_second)
     {
         $this->id = $_id;
         $this->title = $_title;
@@ -21,8 +24,9 @@ class Movie
         $this->poster_path = $_image;
         $this->vote_average = $_vote;
         $this->original_language = $_language;
-        $this->genres = $genres;
-        $this->second = $second;
+        $this->genres = $_genres;
+        // $this->genres = $_genres;
+        $this->second = $_second;
     }
 
     public function voteStar()
@@ -51,13 +55,40 @@ class Movie
     public function displayCard()
     {
         $title = $this->title;
-        $overview = $this->overview;
+        $overview = substr($this->overview, 0, 100) . '...';
         $vote = $this->voteStar();
         $language = $this->getFlag();
         $img = $this->poster_path;
+        // $genre = $this->genres;
         $genres = $this->genres->type;
         $second = $this->second->type;
         include __DIR__ . "/../Views/card.php";
+    }
+    public static function fetchAll()
+    {
+        $movieString = file_get_contents(__DIR__ . "/movie_db.json");
+        $movieArray = json_decode($movieString, true);
+        // var_dump($movieArray);
+
+        $movieList = [];
+
+        $genreList = Genres::fetchAll();
+        //creazione nuovi oggetti secondo file movie_db.json
+        foreach ($movieArray as $item) {
+            // $moviegenres = [];
+            // for ($i = 0; $i < count($item['genre_ids']); $i++) {
+            //     $index = rand(0, count($genres) - 1);
+            //     $rand_genre = $genres[$index];
+            //     $moviegenres[] = $rand_genre;
+            // }
+            $genres = $genreList[rand(0, count($genreList) - 1)];
+            $secondGenre = $genreList[rand(0, count($genreList) - 1)];
+            if ($genres == $secondGenre) {
+                $secondGenre = $genreList[rand(0, count($genreList) - 1)];
+            }
+            $movieList[] = new Movie($item["id"], $item["title"], $item["overview"], $item["poster_path"], $item["vote_average"], $item["original_language"], $genres, $secondGenre);
+        }
+        return $movieList;
     }
 }
 
@@ -65,21 +96,6 @@ class Movie
 // $nuovaCard = new Movie("1", "Ciao", "ciao mamma", "https://image.tmdb.org/t/p/w342/kt9nqD0uOar8IVE9191HXhWOXKI.jpg", "5.65", "en");
 // var_dump($nuovaCard);
 
-$movieString = file_get_contents(__DIR__ . "/movie_db.json");
-$movieArray = json_decode($movieString, true);
-// var_dump($movieArray);
-
-$movieList = [];
-
-//creazione nuovi oggetti secondo file movie_db.json
-foreach ($movieArray as $item) {
-    $genres = $genreList[rand(0, count($genreList) - 1)];
-    $secondGenre = $genreList[rand(0, count($genreList) - 1)];
-    if ($genres == $secondGenre) {
-        $secondGenre = $genreList[rand(0, count($genreList) - 1)];
-    }
-    $movieList[] = new Movie($item["id"], $item["title"], $item["overview"], $item["poster_path"], $item["vote_average"], $item["original_language"], $genres, $secondGenre);
-}
 // var_dump($movieList);
 
 
