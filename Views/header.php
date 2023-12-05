@@ -14,11 +14,23 @@
 
 <body>
     <header class="m-3">
-        <h1>OOP</h1>
-        <ul>
-            <li><a href="index.php">Movies</a></li>
-            <li><a href="book.php">Books</a></li>
-            <li><a href="game.php">Games</a></li>
-        </ul>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">OOP</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.php">Films</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="book.php">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="game.php">Games</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
     <main class="container">

@@ -19,10 +19,7 @@
                 </small>
             </div>
             <div>
-                <small>
-                    <?= $genres ?>,
-                    <?= $second ?>
-                </small>
+                <?= $genres ?>
             </div>
             <div class="mt-3">
                 <h6>Acquista</h6>
@@ -32,26 +29,26 @@
                     </li>
                     <li>
                         <?php if ($discount > 0) { ?>
-                        Prezzo:
-                        <span class="text-decoration-line-through">
-                            <?= $price ?>$
-                        </span>
-                        <span class="badge bg-secondary">
-                            <?= $discount_price ?>$
-                        </span>
+                            Prezzo:
+                            <span class="text-decoration-line-through">
+                                <?= $price ?>$
+                            </span>
+                            <span class="badge bg-secondary">
+                                <?= $discount_price ?>$
+                            </span>
                         <?php } else { ?>
-                        <span>
-                            <?= $price ?>$
-                        </span>
+                            <span>
+                                <?= $price ?>$
+                            </span>
                         <?php } ?>
                     </li>
                     <?php if ($discount > 0) { ?>
-                    <li>
-                        Sconto:
-                        <?= $discount ?>%
-                    </li>
+                        <li>
+                            Sconto:
+                            <?= $discount ?>%
+                        </li>
                     <?php } else { ?>
-                    <li>Nessuno sconto applicato </li>
+                        <li>Nessuno sconto applicato </li>
                     <?php } ?>
                 </ul>
             </div>

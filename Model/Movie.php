@@ -11,13 +11,13 @@ class Movie extends Product
     private $vote_average;
     private $original_language;
 
-    // public array $genres;
-    public Genres $genres;
-    public Genres $second;
+    public array $genres;
+    // public Genres $genres;
+    // public Genres $second;
 
     // public static $discount = 20;
 
-    function __construct($_id, $_title, $_overview, $_image, $_vote, $_language, Genres $_genres, Genres $_second, $_quantity, $_price)
+    function __construct($_id, $_title, $_overview, $_image, $_vote, $_language, array $_genres, $_quantity, $_price)
     {
         parent::__construct($_price, $_quantity);
         $this->id = $_id;
@@ -26,9 +26,9 @@ class Movie extends Product
         $this->poster_path = $_image;
         $this->vote_average = $_vote;
         $this->original_language = $_language;
-        $this->genres = $_genres;
         // $this->genres = $_genres;
-        $this->second = $_second;
+        $this->genres = $_genres;
+        // $this->second = $_second;
     }
 
     public function voteStar()
@@ -54,6 +54,15 @@ class Movie extends Product
         $currentFlag = 'https://flagsapi.com/' . $parsedString . '/flat/64.png';
         return $currentFlag;
     }
+    public function displayGenres()
+    {
+        $template = '';
+        for ($i = 1; $i < count($this->genres); $i++) {
+            $template .= '<span>' . $this->genres[$i]->type . ' </span>';
+        }
+        return $template;
+
+    }
     public function displayCard()
     {
         $discount = $this->setDiscount($this->vote_average);
@@ -64,9 +73,9 @@ class Movie extends Product
         $voteStar = $this->voteStar();
         $language = $this->getFlag();
         $img = $this->poster_path;
-        // $genre = $this->genres;
-        $genres = $this->genres->type;
-        $second = $this->second->type;
+        $genres = $this->displayGenres();
+        // $genres = $this->genres->type;
+        // $second = $this->second->type;
         $price = $this->price;
         $quantity = $this->quantity;
         include __DIR__ . "/../Views/card.php";
@@ -82,20 +91,20 @@ class Movie extends Product
         $genreList = Genres::fetchAll();
         //creazione nuovi oggetti secondo file movie_db.json
         foreach ($movieArray as $item) {
-            // $moviegenres = [];
-            // for ($i = 0; $i < count($item['genre_ids']); $i++) {
-            //     $index = rand(0, count($genres) - 1);
-            //     $rand_genre = $genres[$index];
-            //     $moviegenres[] = $rand_genre;
-            // }
-            $genres = $genreList[rand(0, count($genreList) - 1)];
-            $secondGenre = $genreList[rand(0, count($genreList) - 1)];
-            if ($genres == $secondGenre) {
-                $secondGenre = $genreList[rand(0, count($genreList) - 1)];
+            $moviegenres = [];
+            for ($i = 0; $i < count($item["genre_ids"]); $i++) {
+                $index = rand(0, count($genreList) - 1);
+                $rand_genre = $genreList[$index];
+                $moviegenres[] = $rand_genre;
             }
+            // $genres = $genreList[rand(0, count($genreList) - 1)];
+            // $secondGenre = $genreList[rand(0, count($genreList) - 1)];
+            // if ($genres == $secondGenre) {
+            //     $secondGenre = $genreList[rand(0, count($genreList) - 1)];
+            // }
             $quantity = rand(0, 100);
             $price = rand(10, 100);
-            $movieList[] = new Movie($item["id"], $item["title"], $item["overview"], $item["poster_path"], $item["vote_average"], $item["original_language"], $genres, $secondGenre, $quantity, $price);
+            $movieList[] = new Movie($item["id"], $item["title"], $item["overview"], $item["poster_path"], $item["vote_average"], $item["original_language"], $moviegenres, $quantity, $price);
         }
         return $movieList;
     }
