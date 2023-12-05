@@ -22,7 +22,7 @@
                 <?= $genres ?>
             </div>
             <div class="mt-3">
-                <h6>Acquista</h6>
+                <h6 class="text-danger">Acquista</h6>
                 <ul>
                     <li>Quantità:
                         <?= $quantity ?>

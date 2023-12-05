@@ -39,8 +39,8 @@ class Games extends Product
 
         $gamesList = [];
         foreach ($gamesArray as $pice) {
-            $quantity = rand(1, 20);
-            $price = rand(8, 15);
+            $quantity = rand(1, 50);
+            $price = rand(30, 80);
             $gamesList[] = new Games($pice["appid"], $pice["name"], $pice["description"], $pice["img_icon_url"], $pice["supported_system"], $quantity, $price);
         }
         return $gamesList;

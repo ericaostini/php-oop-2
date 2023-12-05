@@ -12,7 +12,7 @@
                 <?= $item ?>
             </div>
             <div class="mt-3">
-                <h6>Acquista</h6>
+                <h6 class="text-danger">Acquista</h6>
                 <ul>
                     <li>Quantità:
                         <?= $quantity ?>
@@ -23,7 +23,7 @@
                             <span class="text-decoration-line-through">
                                 <?= $price ?>$
                             </span>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-success">
                                 <?= $discount_price ?>$
                             </span>
                         <?php } else { ?>
