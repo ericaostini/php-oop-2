@@ -18,7 +18,7 @@
         <ul>
             <li><a href="index.php">Movies</a></li>
             <li><a href="book.php">Books</a></li>
-            <li><a href="games.php">Games</a></li>
+            <li><a href="game.php">Games</a></li>
         </ul>
     </header>
     <main class="container">

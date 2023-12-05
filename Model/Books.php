@@ -9,7 +9,7 @@ class Books extends Product
     private array $author;
     public static $discount = 20;
 
-    function __construct($_id, $_title, $_description, $_url, $_author, $_price, $_quantity)
+    function __construct($_id, $_title, $_description, $_url, array $_author, $_price, $_quantity)
     {
         parent::__construct($_price, $_quantity);
         $this->id = $_id;
