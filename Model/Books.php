@@ -15,13 +15,13 @@ class Books
         $this->thumbnail_url = $_url;
         $this->author = $_author;
     }
-    public function displayCard()
+    public function displayItem()
     {
+        $img = $this->thumbnail_url;
         $title = $this->title;
         $overview = substr($this->long_description, 0, 100) . '...';
-        $img = $this->thumbnail_url;
-        $genres = $this->author;
-        include __DIR__ . "/../Views/card.php";
+        $item = $this->author[0];
+        include __DIR__ . "/../Views/items.php";
     }
 
     public static function fetchAll()
@@ -31,9 +31,8 @@ class Books
 
         $booksList = [];
         foreach ($booksArray as $part) {
-            $booksList[] = new Books($part["_id"], $part["title"], $part["thumbnailUrl"], $part["longDescription"], $part["authors"]);
+            $booksList[] = new Books($part["_id"], $part["title"], $part["longDescription"], $part["thumbnailUrl"], $part["authors"]);
         }
-        var_dump($booksList);
         return $booksList;
     }
 }

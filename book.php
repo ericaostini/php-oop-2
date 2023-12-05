@@ -7,9 +7,8 @@ $bookList = Books::fetchAll();
 <section>
     <div class="row">
         <?php foreach ($bookList as $book) {
-            $book->displayCard();
-            // var_dump($movie);
-            // var_dump(Movie::$sconto);
+            $book->displayItem();
+            // var_dump($book);
         } ?>
     </div>
 </section>
