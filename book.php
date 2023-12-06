@@ -7,7 +7,7 @@ $bookList = Books::fetchAll();
 <section>
     <div class="row">
         <?php foreach ($bookList as $book) {
-            $book->displayItem();
+            $book->displayItem($book->drawItem());
             // var_dump($book);
         } ?>
     </div>

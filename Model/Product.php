@@ -13,6 +13,17 @@ class Product
     }
     public function setDiscount($vote)
     {
+        // if ($vote < 1 || $vote > 11) {
+        //     throw new Exception("Your vote is out of range");
+        // } else {
+        //     if ($vote <= 5) {
+        //         return $this->discount = 30;
+        //     } else if ($vote <= 8) {
+        //         return $this->discount = 15;
+        //     } else {
+        //         return $this->discount;
+        //     }
+        // }
         if ($vote <= 5) {
             return $this->discount = 30;
         } else if ($vote <= 8) {
@@ -28,7 +39,4 @@ class Product
         return $this->discount_price;
     }
 }
-
-
-
 ?>

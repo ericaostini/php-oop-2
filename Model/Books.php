@@ -1,7 +1,9 @@
 <?php
 include __DIR__ . "/Product.php";
+include __DIR__ . "/../Traits/DrawItem.php";
 class Books extends Product
 {
+    use DrawItem;
     private float $id;
     private string $title;
     private string $long_description;
@@ -18,17 +20,29 @@ class Books extends Product
         $this->thumbnail_url = $_url;
         $this->author = $_author;
     }
-    public function displayItem()
+    public function drawItem()
     {
-        $discount = self::$discount;
-        $discount_price = $this->getDiscount(self::$discount);
-        $img = $this->thumbnail_url;
-        $title = $this->title;
-        $overview = substr($this->long_description, 0, 100) . '...';
-        $item = implode(" - ", $this->author);
-        $price = $this->price;
-        $quantity = $this->quantity;
-        include __DIR__ . "/../Views/items.php";
+        // utilizzo trait DrawItem
+        $itemArray = [
+            "discount" => self::$discount,
+            "discount_price" => $this->getDiscount(self::$discount),
+            "img" => $this->thumbnail_url,
+            "title" => $this->title,
+            "overview" => substr($this->long_description, 0, 100) . '...',
+            "item" => implode(" - ", $this->author),
+            "price" => $this->price,
+            "quantity" => $this->quantity
+        ];
+        return $itemArray;
+        // $discount = self::$discount;
+        // $discount_price = $this->getDiscount(self::$discount);
+        // $img = $this->thumbnail_url;
+        // $title = $this->title;
+        // $overview = substr($this->long_description, 0, 100) . '...';
+        // $item = implode(" - ", $this->author);
+        // $price = $this->price;
+        // $quantity = $this->quantity;
+        // include __DIR__ . "/../Views/items.php";
     }
 
 
