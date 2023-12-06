@@ -1,13 +1,13 @@
 <?php
-include __DIR__ . "/Views/header.php";
-include __DIR__ . "/Model/Games.php";
+include __DIR__."/Views/header.php";
+include __DIR__."/Model/Games.php";
 
 $gamesList = Games::fetchAll();
 ?>
 <section>
     <div class="row">
-        <?php foreach ($gamesList as $game) {
-            $game->displayItem();
+        <?php foreach($gamesList as $game) {
+            $game->displayItem($game->drawItem());
             // var_dump($book);
         } ?>
     </div>
@@ -16,5 +16,5 @@ $gamesList = Games::fetchAll();
 
 
 <?php
-include __DIR__ . "/Views/footer.php";
+include __DIR__."/Views/footer.php";
 ?>
