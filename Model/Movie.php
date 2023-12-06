@@ -34,7 +34,7 @@ class Movie extends Product {
         $template = '';
         $vote = ceil($this->vote_average / 2);
         for($n = 1; $n <= 5; $n++) {
-            $template .= $n <= $vote ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star"></i>';
+            $template .= $n <= $vote ? '<i class="fa-solid fa-star text-warning "></i>' : '<i class="fa-regular fa-star"></i>';
         }
         return $template;
     }
