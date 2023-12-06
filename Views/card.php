@@ -8,19 +8,28 @@
             <p class="card-text">
                 <?= $overview ?>
             </p>
-            <div>
-                <small>
-                    <p>
-                        <?= $voteStar . $vote ?>
-                    </p>
-                </small>
-                <small>
-                    <img src="<?= $language ?>" alt="">
-                </small>
-            </div>
-            <div>
-                <?= $genres ?>
-            </div>
+            <?php if(isset($item)) { ?>
+                <div>
+                    <?= $item ?>
+                </div>
+            <?php } ?>
+            <?php if(isset($vote) && isset($language)) { ?>
+                <div>
+                    <small>
+                        <p>
+                            <?= $voteStar.$vote ?>
+                        </p>
+                    </small>
+                    <small>
+                        <img src="<?= $language ?>" alt="">
+                    </small>
+                </div>
+            <?php } ?>
+            <?php if(isset($genres)) { ?>
+                <div>
+                    <?= $genres ?>
+                </div>
+            <?php } ?>
             <div class="mt-3">
                 <h6 class="text-danger">Acquista</h6>
                 <ul>
@@ -28,7 +37,7 @@
                         <?= $quantity ?>
                     </li>
                     <li>
-                        <?php if ($discount > 0) { ?>
+                        <?php if($discount > 0) { ?>
                             Prezzo:
                             <span class="text-decoration-line-through">
                                 <?= $price ?>$
@@ -42,7 +51,7 @@
                             </span>
                         <?php } ?>
                     </li>
-                    <?php if ($discount > 0) { ?>
+                    <?php if($discount > 0) { ?>
                         <li>
                             Sconto:
                             <?= $discount ?>%
