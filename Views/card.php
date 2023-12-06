@@ -2,6 +2,11 @@
     <div class="card h-100 g-1">
         <img src="<?= $img ?>" class="card-img-top" alt="<?= $title ?>">
         <div class="card-body">
+            <?php if(isset($error) && $error) { ?>
+                <div class="alert alert-danger">
+                    <?= $error ?>
+                </div>
+            <?php } ?>
             <h5>
                 <?= $title ?>
             </h5>

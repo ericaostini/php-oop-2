@@ -42,7 +42,6 @@ class Games extends Product {
         // include __DIR__ . "/../Views/items.php";
     }
 
-
     public static function fetchAll() {
         $gamesString = file_get_contents(__DIR__."/steam_db.json");
         $gamesArray = json_decode($gamesString, true);

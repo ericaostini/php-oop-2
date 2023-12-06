@@ -17,7 +17,6 @@ class Movie extends Product {
     // public Genres $second;
 
     // public static $discount = 20;
-
     function __construct($_id, $_title, $_overview, $_image, $_vote, $_language, array $_genres, $_quantity, $_price) {
         parent::__construct($_price, $_quantity);
         $this->id = $_id;
@@ -58,13 +57,20 @@ class Movie extends Product {
             $template .= '<span>'.$this->genres[$i]->type.' </span>';
         }
         return $template;
-
     }
     public function drawCard() {
+        if(ceil($this->vote_average < 7)) {
+            try {
+                $this->setDiscount(20);
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+            }
+        }
         // utilizzo trait DrawItem
         $itemArray = [
-            "discount" => $this->setDiscount($this->vote_average),
-            "discount_price" => $this->getDiscount($this->setDiscount($this->vote_average)),
+            "error" => $error ?? "",
+            "discount" => $this->displayDiscount(),
+            "discount_price" => $this->getDiscount($this->displayDiscount($this->vote_average)),
             "title" => $this->title,
             "overview" => substr($this->overview, 0, 100).'...',
             "vote" => round($this->vote_average, 2),
