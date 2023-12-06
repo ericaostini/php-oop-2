@@ -8,9 +8,9 @@
             <p class="card-text">
                 <?= $overview ?>
             </p>
-            <?php if(isset($item)) { ?>
+            <?php if(isset($object)) { ?>
                 <div>
-                    <?= $item ?>
+                    <?= $object ?>
                 </div>
             <?php } ?>
             <?php if(isset($vote) && isset($language)) { ?>

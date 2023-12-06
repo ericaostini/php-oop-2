@@ -26,7 +26,7 @@ class Games extends Product {
             "img" => "https://cdn.cloudflare.steamstatic.com/steam/apps/".$this->id."/header.jpg",
             "title" => $this->name,
             "overview" => substr($this->description, 0, 100).'...',
-            "item" => implode(" - ", $this->system),
+            " object" => implode(" - ", $this->system),
             "price" => $this->price,
             "quantity" => $this->quantity
         ];
